@@ -1,0 +1,41 @@
+version: '3'
+services:
+  localai:
+    image: localai/localai:v2.11.0-aio-cpu
+    container_name: ${APP_NAME}-localai
+    # For Nvidia GPUs decomment one of the following (cuda11 or cuda12):
+    # image: localai/localai:v2.11.0-aio-gpu-cuda-11
+    # image: localai/localai:v2.11.0-aio-gpu-cuda-12
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/readyz"]
+      interval: 1m
+      timeout: 20m
+      retries: 5
+    ports:
+      - 8080:8080
+    environment:
+      - DEBUG=true
+      # ...
+    volumes:
+      - ./models:/build/models:cached
+    # decomment the following piece if running with Nvidia GPUs
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: 1
+    #           capabilities: [gpu]
+  frontend:
+    image: node:20-alpine
+    container_name: ${APP_NAME}-frontend
+    restart: always
+    working_dir: /var/www/app
+    volumes:
+      - .:/var/www/app
+    ports:
+      - "4321:4321"
+    environment:
+      - NODE_ENV=${NODE_ENV}
+    user: "node"
+    command: sh -c "npm i && npm start"
