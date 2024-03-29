@@ -1,4 +1,6 @@
-# AI playground
+# [WIP] AI playground
+> This project is currently a work in progress. It's actively being developed, and features may change frequently.
+
 Learning application for trying out AI-related features and building simple REST API.
 
 ### Software requirements
