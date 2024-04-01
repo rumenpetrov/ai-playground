@@ -1,8 +1,9 @@
 ---
 import Layout from '@src/layouts/Layout.astro';
 import ConversationCard from '@src/components/ConversationCard.astro';
+import { GET } from '@src/pages/api/conversations.ts';
 
-const conversationsResponse = await fetch('http://localhost:4321/api/conversations');
+const conversationsResponse = await GET(Astro);
 const conversations = await conversationsResponse.json() || [];
 ---
 

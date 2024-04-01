@@ -1,8 +1,8 @@
 ---
 import { getSession } from 'auth-astro/server';
+import { GET } from '@src/pages/api/users/me.ts';
 
-// TODO: Develop internal API endpoints for auth
-const session = await getSession(Astro.request);
+const me = await getSession(Astro.request);
 
 interface Props {
   title: string;
@@ -24,12 +24,12 @@ const { title } = Astro.props;
   <body>
     <header>
       <div>
-        <div style={{ display: session ? 'block' : 'none' }}>
-          <p>Welcome {session?.user?.name}</p>
+        <div style={{ display: me ? 'block' : 'none' }}>
+          <p>Welcome {me?.user?.name}</p>
           <button id="logout">Logout</button>
         </div>
 
-        <div style={{ display: session ? 'none' : 'block' }}>
+        <div style={{ display: me ? 'none' : 'block' }}>
           <button id="github-login">Login with GitHub</button>
         </div>
       </div>

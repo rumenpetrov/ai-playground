@@ -40,11 +40,11 @@ $ docker-compose up
 * [ ] Add UI library
 * [ ] Logic for public and private pages
 * [ ] Develop UIs and page structure
-* [ ] Protected AI chat page
+* [ ] Private AI chat page
 * [ ] Present information collected through REST API on the client-side
 
 #### Nice to have
-* [ ] Passwordless authentication using pass keys
+* [ ] Passwordless authentication using [passkeys](https://passkeys.dev/)
 * [ ] Conversation history - AI takes in consideration previous questions
 * [ ] Stream responses - Display each piece of assistants answer while it is generating it
 * [ ] Generate image with prompt

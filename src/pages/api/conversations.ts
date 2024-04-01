@@ -1,4 +1,4 @@
-import type { APIRoute } from "astro";
+import type { APIRoute, APIContext } from 'astro';
 import { XataClient } from '@src/xata';
 
 const xata = new XataClient({
@@ -6,7 +6,7 @@ const xata = new XataClient({
   branch: import.meta.env.XATA_BRANCH
 });
 
-export const GET: APIRoute = async ({ params, request }) => {
+export const GET: APIRoute = async ({ params, request }: APIContext): Promise<Response> => {
   const { records } = await xata.db.conversations.getPaginated({
     pagination: {
       size: 50
@@ -15,21 +15,3 @@ export const GET: APIRoute = async ({ params, request }) => {
 
   return new Response(JSON.stringify(records));
 };
-
-export const POST: APIRoute = ({ request }) => {
-  return new Response(JSON.stringify({
-    message: "This was a POST!"
-  }));
-}
-
-export const DELETE: APIRoute = ({ request }) => {
-  return new Response(JSON.stringify({
-    message: "This was a DELETE!"
-  }));
-};
-
-export const ALL: APIRoute = ({ request }) => {
-  return new Response(JSON.stringify({
-    message: `This was a ${request.method}!`
-  }));
-}
