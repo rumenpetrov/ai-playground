@@ -38,4 +38,5 @@ services:
     environment:
       - NODE_ENV=${NODE_ENV}
     user: "node"
-    command: sh -c "npm i && npm start"
+    # Work-aroun for NPM issue
+    command: sh -c "rm -rf node_modules && npm i && npm start"
