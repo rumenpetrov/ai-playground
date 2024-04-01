@@ -53,5 +53,5 @@ $ docker-compose up
 * [Node.js](https://nodejs.org/en)
 * [Astro](https://astro.build/)
 * [LocalAI](https://localai.io/)
-* [Xata](xata.io)
+* [Xata](https://xata.io)
 * [Auth.js](https://authjs.dev/)
