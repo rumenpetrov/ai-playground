@@ -1,0 +1,6 @@
+{
+  "databaseURL": "https://Rumen-Petrov-s-workspace-b02hn0.eu-central-1.xata.sh/db/ai-playground",
+  "codegen": {
+    "output": "src/xata.ts"
+  }
+}

@@ -29,14 +29,22 @@ $ docker-compose up
 | localai  | 8080 |
 | frontend | 4321 |
 
-## Features
+## Objectives checklist
 
 #### Must
-* [ ] AI chat using model which is running locally
-* [ ] Users over REST API
-* [ ] Passwordless registration and login
+* [x] Initial Astro application setup
+* [x] REST API for interacting with AI models which are running locally
+* [x] Serverless database integration
+* [x] Passwordless authentication using Github (Social login)
+* [ ] Add UI framework(s) for client-side interaction
+* [ ] Add UI library
+* [ ] Logic for public and private pages
+* [ ] Develop UIs and page structure
+* [ ] Protected AI chat page
+* [ ] Present information collected through REST API on the client-side
 
 #### Nice to have
+* [ ] Passwordless authentication using pass keys
 * [ ] Conversation history - AI takes in consideration previous questions
 * [ ] Stream responses - Display each piece of assistants answer while it is generating it
 * [ ] Generate image with prompt
@@ -45,3 +53,5 @@ $ docker-compose up
 * [Node.js](https://nodejs.org/en)
 * [Astro](https://astro.build/)
 * [LocalAI](https://localai.io/)
+* [Xata](xata.io)
+* [Auth.js](https://authjs.dev/)

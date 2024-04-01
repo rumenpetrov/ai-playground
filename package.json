@@ -7,11 +7,18 @@
     "start": "astro dev --host",
     "build": "astro check && astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "xata": "xata"
   },
   "dependencies": {
-    "astro": "^4.5.12",
     "@astrojs/check": "^0.5.10",
+    "@astrojs/node": "^8.2.5",
+    "@auth/core": "^0.18.6",
+    "@auth/xata-adapter": "^0.6.2",
+    "@xata.io/cli": "^0.15.10",
+    "@xata.io/client": "^0.29.3",
+    "astro": "^4.5.12",
+    "auth-astro": "^4.1.1",
     "typescript": "^5.4.3"
   }
 }
