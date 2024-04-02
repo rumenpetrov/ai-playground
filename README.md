@@ -41,7 +41,7 @@ $ docker-compose up
 * [x] Logic for public and private pages
 * [ ] Develop UIs and page structure
 * [ ] Private AI chat page
-* [ ] Present information collected through REST API on the client-side
+* [ ] CRUD operations for a resource in the app and in the REST API
 
 #### Nice to have
 * [ ] Passwordless authentication using [passkeys](https://passkeys.dev/)
