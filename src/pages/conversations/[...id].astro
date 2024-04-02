@@ -1,0 +1,17 @@
+---
+import Layout from '@src/layouts/Layout.astro';
+import PrivatePage from '@src/layouts/PrivatePage.astro';
+import Chat from '@src/components/Chat';
+
+const { id } = Astro.params;
+---
+
+<Layout title="Conversation">
+  <PrivatePage>
+    <main>
+      <h1>{id}</h1>
+
+      <Chat id={id} client:load />
+    </main>
+  </PrivatePage>
+</Layout>

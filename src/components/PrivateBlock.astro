@@ -1,0 +1,6 @@
+---
+import { getSession } from 'auth-astro/server';
+
+const me = await getSession(Astro.request);
+---
+{me && <slot />}

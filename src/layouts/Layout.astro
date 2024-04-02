@@ -1,6 +1,8 @@
 ---
 import { getSession } from 'auth-astro/server';
-import { GET } from '@src/pages/api/users/me.ts';
+import Login from '@src/components/Login.astro';
+import Logout from '@src/components/Logout.astro';
+import PrivateBlock from '@src/components/PrivateBlock.astro';
 
 const me = await getSession(Astro.request);
 
@@ -24,14 +26,20 @@ const { title } = Astro.props;
   <body>
     <header>
       <div>
-        <div style={{ display: me ? 'block' : 'none' }}>
-          <p>Welcome {me?.user?.name}</p>
-          <button id="logout">Logout</button>
-        </div>
+        <a href="/">Home</a>
 
-        <div style={{ display: me ? 'none' : 'block' }}>
-          <button id="github-login">Login with GitHub</button>
-        </div>
+        <PrivateBlock>
+          <a href="/conversations">Conversations</a>
+        </PrivateBlock>
+
+        {me ? (
+          <>
+            <p>Welcome {me?.user?.name}</p>
+            <Logout />
+          </>
+        ) : (
+          <Login provider="github" />
+        )}
       </div>
     </header>
 
@@ -56,6 +64,9 @@ const { title } = Astro.props;
     background-size: 224px;
     color: #fff;
   }
+  a {
+    color: currentColor;
+  }
   code {
     font-family:
       Menlo,
@@ -67,11 +78,29 @@ const { title } = Astro.props;
       Courier New,
       monospace;
   }
+  header {
+    border-bottom: 1px solid currentColor;
+  }
+  main {
+    margin: auto;
+    padding: 1rem;
+    width: 800px;
+    max-width: calc(100% - 2rem);
+    font-size: 20px;
+    line-height: 1.6;
+  }
+  h1 {
+    font-size: 4rem;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    margin-bottom: 1em;
+  }
+  .text-gradient {
+    background-image: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 400%;
+    background-position: 0%;
+  }
 </style>
-
-<script>
-  const { signIn, signOut } = await import("auth-astro/client")
-
-  document.querySelector("#github-login").onclick = () => signIn("github")
-  document.querySelector("#logout").onclick = () => signOut()
-</script>

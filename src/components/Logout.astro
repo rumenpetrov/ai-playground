@@ -1,0 +1,11 @@
+---
+---
+<button class="logout">Logout</button>
+
+<script>
+  const { signOut } = await import('auth-astro/client');
+
+  const triggerElement = document.querySelector('.logout');
+
+  triggerElement?.addEventListener('click', () => signOut());
+</script>

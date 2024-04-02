@@ -36,9 +36,9 @@ $ docker-compose up
 * [x] REST API for interacting with AI models which are running locally
 * [x] Serverless database integration
 * [x] Passwordless authentication using Github (Social login)
-* [ ] Add UI framework(s) for client-side interaction
+* [x] Add UI framework(s) for client-side interaction
 * [ ] Add UI library
-* [ ] Logic for public and private pages
+* [x] Logic for public and private pages
 * [ ] Develop UIs and page structure
 * [ ] Private AI chat page
 * [ ] Present information collected through REST API on the client-side
@@ -55,3 +55,4 @@ $ docker-compose up
 * [LocalAI](https://localai.io/)
 * [Xata](https://xata.io)
 * [Auth.js](https://authjs.dev/)
+* [React](https://react.dev/)
