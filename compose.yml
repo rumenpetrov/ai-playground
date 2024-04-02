@@ -30,6 +30,11 @@ services:
     image: node:20-alpine
     container_name: ${APP_NAME}-frontend
     restart: always
+    ulimits:
+      nproc: 65535
+      nofile:
+        soft: 20000
+        hard: 40000
     working_dir: /var/www/app
     volumes:
       - .:/var/www/app
@@ -38,5 +43,4 @@ services:
     environment:
       - NODE_ENV=${NODE_ENV}
     user: "node"
-    # Work-aroun for NPM issue
-    command: sh -c "rm -rf node_modules && npm i && npm start"
+    command: npm start
