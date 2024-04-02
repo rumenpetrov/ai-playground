@@ -2,14 +2,24 @@
 import Layout from '@src/layouts/Layout.astro';
 import PrivatePage from '@src/layouts/PrivatePage.astro';
 import Chat from '@src/components/Chat';
+import { GET } from '@src/pages/api/conversations/[...id].ts';
 
 const { id } = Astro.params;
+
+const conversationResponse = await GET(Astro);
+const conversation = conversationResponse && conversationResponse?.status === 200
+  ? await conversationResponse.json()
+  : null;
+
+if (!conversation) {
+  return conversationResponse;
+}
 ---
 
 <Layout title="Conversation">
   <PrivatePage>
     <main>
-      <h1>{id}</h1>
+      <h1>{conversation.name}</h1>
 
       <Chat id={id} client:load />
     </main>

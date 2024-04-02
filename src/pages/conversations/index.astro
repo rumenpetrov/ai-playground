@@ -2,7 +2,7 @@
 import Layout from '@src/layouts/Layout.astro';
 import PrivatePage from '@src/layouts/PrivatePage.astro';
 import ConversationCard from '@src/components/ConversationCard.astro';
-import { GET } from '@src/pages/api/conversations.ts';
+import { GET } from '@src/pages/api/conversations/index.ts';
 
 const conversationsResponse = await GET(Astro);
 const conversations = await conversationsResponse.json() || [];
