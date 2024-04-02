@@ -1,5 +1,5 @@
 import type { APIRoute, APIContext } from 'astro';
-import { XataClient } from '@src/xata';
+import { XataClient } from '@/xata';
 
 const xata = new XataClient({
   apiKey: import.meta.env.XATA_API_KEY,

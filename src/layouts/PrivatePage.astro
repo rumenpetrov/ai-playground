@@ -1,6 +1,6 @@
 ---
 import { getSession } from 'auth-astro/server';
-import Login from '@src/components/Login.astro';
+import Login from '@/components/Login.astro';
 
 const me = await getSession(Astro.request);
 ---

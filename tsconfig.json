@@ -4,8 +4,8 @@
     "strictNullChecks": true,
     "baseUrl": "/var/www/app",
     "paths": {
-      "@src/*": [
-        "src/*"
+      "@/*": [
+        "./src/*"
       ]
     },
     "jsx": "react-jsx",

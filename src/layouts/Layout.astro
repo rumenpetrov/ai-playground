@@ -1,8 +1,8 @@
 ---
 import { getSession } from 'auth-astro/server';
-import Login from '@src/components/Login.astro';
-import Logout from '@src/components/Logout.astro';
-import PrivateBlock from '@src/components/PrivateBlock.astro';
+import Login from '@/components/Login.astro';
+import Logout from '@/components/Logout.astro';
+import PrivateBlock from '@/components/PrivateBlock.astro';
 
 const me = await getSession(Astro.request);
 
