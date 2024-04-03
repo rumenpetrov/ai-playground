@@ -1,0 +1,66 @@
+---
+import { getSession } from 'auth-astro/server';
+import '@/styles/global.css'
+import { MainMenu } from '@/components/main-menu';
+import { UserMenu } from '@/components/user-menu';
+
+const me = await getSession(Astro.request);
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <header class="border-b-2 border-current mb-8">
+      <div class="container mx-auto">
+        <div class="flex flex-row justify-between items-center p-2">
+          <div class="flex flex-row items-center">
+            <a href="/" class="text-3xl font-bold text-gradient leading-tight mr-16">AI Playground</a>
+
+            <MainMenu client:only="react" hasUser={Boolean(me)} />
+          </div>
+
+          <UserMenu client:load hasUser={Boolean(me)} name={me?.user?.name} url={me?.user?.image} />
+        </div>
+      </div>
+    </header>
+
+    <slot />
+  </body>
+</html>
+<style is:global>
+  :root {
+    color-scheme: light dark;
+  }
+  html,
+  body {
+    min-height: 100vh;
+    font-family: system-ui, sans-serif;
+    background:
+      radial-gradient(circle at 100% 50%, transparent 20%, hsla(0 100% 0% / 3%) 21%, hsla(0 100% 0% / 3%) 34%, transparent 35%, transparent),
+      radial-gradient(circle at 0% 50%, transparent 20%, hsla(0 100% 0% / 3%) 21%, hsla(0 100% 0% / 3%) 34%, transparent 35%, transparent)
+      0 -50px;
+    background-color: #eee;
+    background-size: 75px 100px;
+  }
+  a {
+    color: currentColor;
+    cursor: pointer;
+  }
+  [data-icon] {
+    display: inline-block;
+  }
+</style>

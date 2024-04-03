@@ -1,7 +1,12 @@
 ---
-import Layout from '@/layouts/Layout.astro';
-import PrivatePage from '@/layouts/PrivatePage.astro';
-import ConversationCard from '@/components/ConversationCard.astro';
+import Layout from '@/layouts/layout.astro';
+import PrivatePage from '@/layouts/private-page.astro';
+import Typography from '@/components/typography.tsx';
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
 import { GET } from '@/pages/api/conversations/index.ts';
 
 const conversationsResponse = await GET(Astro);
@@ -11,30 +16,21 @@ const conversations = await conversationsResponse.json() || [];
 <Layout title="Conversation">
   <PrivatePage>
     <main>
-      <h1>Conversations</h1>
+      <div class="container mx-auto">
+        <Typography Component="h1" className="text-center">Conversations</Typography>
 
-      <div role="list" class="link-card-grid">
-        {conversations.map((conversation) => (
-          <a href={`/conversations/${conversation.id}`}>
-            <ConversationCard
-              key={conversation.id}
-              name={conversation.name}
-            />
-          </a>
-        ))}
+        <div role="list" class="columns-2 py-8">
+          {conversations.map((conversation) => (
+            <a href={`/conversations/${conversation.id}`}>
+              <Card client:load key={conversation.id}>
+                <CardHeader>
+                  <CardTitle>{conversation.name}</CardTitle>
+                </CardHeader>
+              </Card>
+            </a>
+          ))}
+        </div>
       </div>
     </main>
   </PrivatePage>
 </Layout>
-
-<style>
-  .link-card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
-    gap: 2rem;
-    padding: 0;
-  }
-  .link-card-grid a {
-    text-decoration: none;
-  }
-</style>

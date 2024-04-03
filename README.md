@@ -37,9 +37,9 @@ $ docker-compose up
 * [x] Serverless database integration
 * [x] Passwordless authentication using Github (Social login)
 * [x] Add UI framework(s) for client-side interaction
-* [ ] Add UI library
+* [x] Add UI library
 * [x] Logic for public and private pages
-* [ ] Develop UIs and page structure
+* [x] Develop UIs and page structure
 * [ ] Private AI chat page
 * [ ] CRUD operations for a resource in the app and in the REST API
 
@@ -56,3 +56,6 @@ $ docker-compose up
 * [Xata](https://xata.io)
 * [Auth.js](https://authjs.dev/)
 * [React](https://react.dev/)
+* [Shadcn UI](https://ui.shadcn.com/)
+* [Radix UI](https://www.radix-ui.com/)
+* [tailwindcss](https://tailwindcss.com/)

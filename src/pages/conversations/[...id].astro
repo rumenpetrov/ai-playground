@@ -1,7 +1,8 @@
 ---
-import Layout from '@/layouts/Layout.astro';
-import PrivatePage from '@/layouts/PrivatePage.astro';
-import Chat from '@/components/Chat';
+import Layout from '@/layouts/layout.astro';
+import PrivatePage from '@/layouts/private-page.astro';
+import Typography from '@/components/typography.tsx';
+import Chat from '@/components/chat.tsx';
 import { GET } from '@/pages/api/conversations/[...id].ts';
 
 const { id } = Astro.params;
@@ -19,9 +20,11 @@ if (!conversation) {
 <Layout title="Conversation">
   <PrivatePage>
     <main>
-      <h1>{conversation.name}</h1>
+      <div class="container mx-auto">
+        <Typography Component="h1" className="text-center">{conversation.name}</Typography>
 
-      <Chat id={id} client:load />
+        <Chat id={id} client:load />
+      </div>
     </main>
   </PrivatePage>
 </Layout>
