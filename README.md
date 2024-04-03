@@ -27,7 +27,7 @@ $ docker-compose up
 | Service  | Port |
 |----------|------|
 | localai  | 8080 |
-| frontend | 4321 |
+| app | 4321 |
 
 ## Objectives checklist
 
