@@ -32,7 +32,7 @@ $ docker-compose up
 ## Objectives checklist
 
 #### Must
-* [x] Initial Astro application setup
+* [x] Initial setup for full-stack application
 * [x] REST API for interacting with AI models which are running locally
 * [x] Serverless database integration
 * [x] Passwordless authentication using Github (Social login)
