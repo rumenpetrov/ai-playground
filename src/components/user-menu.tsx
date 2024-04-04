@@ -2,7 +2,7 @@ import React from 'react';
 import { Icon } from '@iconify-icon/react';
 import Login from '@/components/login.tsx';
 import Logout from '@/components/logout.tsx';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar.tsx';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -10,7 +10,7 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+} from '@/components/ui/dropdown-menu.tsx';
 
 interface Props {
   hasUser: boolean;

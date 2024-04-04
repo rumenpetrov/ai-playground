@@ -16,7 +16,7 @@ export const Login = (props: Props) => {
   const { children, provider, ...rest } = props;
 
   if (provider !== 'github') {
-    console.log('Provider not supported.', provider);
+    console.error('Provider not supported.', provider);
     return null;
   }
 

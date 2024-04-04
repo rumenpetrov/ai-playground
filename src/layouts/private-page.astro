@@ -3,7 +3,7 @@ import { getSession } from 'auth-astro/server';
 import { Icon } from 'astro-icon/components';
 import Login from '@/components/login.tsx';
 import Typography from '@/components/typography.tsx';
-import { Button } from "@/components/ui/button"
+import NativeButton from '@/components/native-button.astro';
 
 const me = await getSession(Astro.request);
 ---
@@ -17,15 +17,13 @@ const me = await getSession(Astro.request);
       <Typography Component="p" className="text-center">Please login to access the content.</Typography>
 
       <div class="grid grid-rows-1 gap-2 w-min m-auto py-8">
-        <Button client:only>
+        <NativeButton>
           <Login client:only provider="github">
-            <Icon name="mdi:github" size="18" class="mr-2 align-text-bottom" />
+            <Icon name="mdi:github" size={18} class="mr-2 align-text-bottom" />
           </Login>
-        </Button>
+        </NativeButton>
 
-        <Button client:load variant="secondary">
-          <a href="/" class="block">Back to Home</a>
-        </Button>
+        <NativeButton asLink href="/">Back to Home</NativeButton>
       </div>
     </div>
   </main>

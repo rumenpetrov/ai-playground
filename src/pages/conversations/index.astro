@@ -2,15 +2,14 @@
 import Layout from '@/layouts/layout.astro';
 import PrivatePage from '@/layouts/private-page.astro';
 import Typography from '@/components/typography.tsx';
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card';
+import ConversationCard from '@/components/conversation-card.tsx';
+import NativeButton from '@/components/native-button.astro';
 import { GET } from '@/pages/api/conversations/index.ts';
 
 const conversationsResponse = await GET(Astro);
-const conversations = await conversationsResponse.json() || [];
+const conversations = conversationsResponse && conversationsResponse?.status === 200
+  ? await conversationsResponse.json()
+  : [];
 ---
 
 <Layout title="Conversation">
@@ -19,15 +18,17 @@ const conversations = await conversationsResponse.json() || [];
       <div class="container mx-auto">
         <Typography Component="h1" className="text-center">Conversations</Typography>
 
-        <div role="list" class="columns-2 py-8">
+        <div class="flex justify-center pt-12 pb-4">
+          <NativeButton asLink href="/conversations/create" class="">Create new conversation</NativeButton>
+        </div>
+
+        <div role="list" class="grid grid-cols-2 gap-4 py-8">
           {conversations.map((conversation) => (
-            <a href={`/conversations/${conversation.id}`}>
-              <Card client:load key={conversation.id}>
-                <CardHeader>
-                  <CardTitle>{conversation.name}</CardTitle>
-                </CardHeader>
-              </Card>
-            </a>
+            <ConversationCard
+              client:load
+              id={conversation.id}
+              name={conversation.name}
+            />
           ))}
         </div>
       </div>

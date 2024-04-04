@@ -1,0 +1,84 @@
+---
+import Layout from '@/layouts/layout.astro';
+import PrivatePage from '@/layouts/private-page.astro';
+import Typography from '@/components/typography.tsx';
+import NativeLabel from '@/components/native-label.astro';
+import NativeButton from '@/components/native-button.astro';
+import NativeInput from '@/components/native-input.astro';
+import { GET } from '@/pages/api/conversations/[...id].ts';
+import { PATCH } from '@/pages/api/conversations/rename/[...id].ts';
+import { processForm } from '@/utilities/form.ts';
+
+const { success, formErrors } = await processForm(Astro, PATCH);
+
+const conversationResponse = await GET(Astro);
+const conversation = conversationResponse && conversationResponse?.status === 200
+  ? await conversationResponse.json()
+  : null;
+
+if (success) {
+  return Astro.redirect('/conversations');
+}
+
+if (!conversation) {
+  return conversationResponse;
+}
+
+const formRowClass = 'flex flex-col py-2';
+---
+
+<Layout title="Conversation">
+  <PrivatePage>
+    <main>
+      <div class="container mx-auto">
+        <NativeButton asLink href="/conversations">Back to conversations</NativeButton>
+
+        <Typography Component="h1" className="text-center">{conversation.name}</Typography>
+
+        <div class="w-96 max-w-full mx-auto">
+          <form method="POST" enctype="multipart/form-data" action="">
+            <div class={formRowClass}>
+              <NativeLabel for="fieldId">ID</NativeLabel>
+
+              <NativeInput
+                type="text"
+                name="id"
+                id="fieldId"
+                placeholder="id"
+                value={conversation.id}
+                readonly
+                required
+                minlength="1"
+              />
+            </div>
+
+            <div class={formRowClass}>
+              <NativeLabel for="fieldName">Name</NativeLabel>
+
+              <NativeInput
+                type="text"
+                name="name"
+                id="fieldName"
+                placeholder="name"
+                value={conversation.name}
+                required
+                minlength="3"
+              />
+            </div>
+
+            <div class="py-4 flex justify-end">
+              <NativeButton type="submit">Submit</NativeButton>
+            </div>
+          </form>
+        </div>
+      </div>
+    </main>
+  </PrivatePage>
+</Layout>
+
+<!-- TODO: Display form errors -->
+<script define:vars={{ formErrors }}>
+  if (formErrors && typeof formErrors === 'object') {
+    alert(JSON.stringify(formErrors))
+  }
+</script>

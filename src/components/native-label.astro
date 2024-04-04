@@ -1,0 +1,17 @@
+---
+const { class: className, ...rest } = Astro.props;
+
+const classBase = 'text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 px-1 py-2';
+---
+<label {...rest} class:list={[classBase, className]}><slot /></label>
+
+<style>
+  label:has(+ input:invalid) {
+    color: red;
+  }
+  label:has(+ input:required)::after {
+    content: '*';
+    padding-left: 2px;
+    color: red;
+  }
+</style>

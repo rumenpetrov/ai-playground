@@ -1,17 +1,13 @@
 import type { APIRoute, APIContext } from 'astro';
-import { XataClient } from '@/xata';
-
-const xata = new XataClient({
-  apiKey: import.meta.env.XATA_API_KEY,
-  branch: import.meta.env.XATA_BRANCH
-});
+import xataClient from '@/data-entities/xata-client.ts'
+import { status200, status404, status422 } from '@/utilities/rest-status-codes.ts'
 
 export const GET: APIRoute = async ({ params, request }: APIContext): Promise<Response> => {
-  const { records } = await xata.db.conversations.getPaginated({
-    pagination: {
-      size: 50
-    }
-  });
+  const records = await xataClient.db.conversations.getAll();
 
-  return new Response(JSON.stringify(records));
+  if (!records) {
+    return new Response(null, status404);
+  }
+
+  return new Response(JSON.stringify(records), status200);
 };
