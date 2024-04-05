@@ -40,7 +40,7 @@ $ docker-compose up
 * [x] Add UI library
 * [x] Logic for public and private pages
 * [x] Develop UIs and page structure
-* [ ] Private AI chat page
+* [x] Private AI chat page
 * [x] CRUD operations for a resource in the app and in the REST API
 
 #### Nice to have
