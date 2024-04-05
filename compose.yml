@@ -26,6 +26,8 @@ services:
     #         - driver: nvidia
     #           count: 1
     #           capabilities: [gpu]
+    networks:
+      - ai-playground-network
   app:
     image: node:20-alpine
     container_name: ${APP_NAME}-app
@@ -44,3 +46,9 @@ services:
       - NODE_ENV=${NODE_ENV}
     user: "node"
     command: npm start
+    networks:
+      - ai-playground-network
+
+networks:
+  ai-playground-network:
+    driver: bridge

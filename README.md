@@ -44,10 +44,10 @@ $ docker-compose up
 * [x] CRUD operations for a resource in the app and in the REST API
 
 #### Nice to have
-* [ ] Passwordless authentication using [passkeys](https://passkeys.dev/)
 * [ ] Conversation history - AI takes in consideration previous questions
 * [ ] Stream responses - Display each piece of assistants answer while it is generating it
 * [ ] Generate image with prompt
+* [ ] Passwordless authentication using [passkeys](https://passkeys.dev/)
 
 ## Technology stack
 * [Node.js](https://nodejs.org/en)
