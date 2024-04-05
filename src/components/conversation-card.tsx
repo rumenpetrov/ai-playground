@@ -42,7 +42,7 @@ const ConversationCard = (props: Props) => {
         </div>
 
         <Button asChild>
-          <a href={`/conversations/${id}`}>Chat</a>
+          <a href={`/conversations/${id}`}>Take me to chat</a>
         </Button>
       </CardFooter>
     </Card>
