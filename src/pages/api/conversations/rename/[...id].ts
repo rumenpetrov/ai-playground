@@ -6,7 +6,7 @@ export const PATCH: APIRoute = async ({ params, request }: APIContext): Promise<
   const { id } = params;
   const formData = await request.formData();
   const name = formData.get('name');
-  const idValid = typeof name === 'string';
+  const idValid = typeof id === 'string';
   const nameValid = typeof name === 'string' && name.length > 3;
 
   if (!idValid || !nameValid) {

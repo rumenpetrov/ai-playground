@@ -24,7 +24,7 @@ if (!conversation) {
         <div class="main-content">
           <Typography Component="h1" className="text-center">{conversation.name}</Typography>
 
-          <Chat id={id} client:load />
+          <Chat client:load id={id} initialHistory={conversation?.history} />
         </div>
       </div>
     </main>

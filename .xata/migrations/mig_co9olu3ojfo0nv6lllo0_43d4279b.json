@@ -1,0 +1,16 @@
+{
+  "id": "mig_co9olu3ojfo0nv6lllo0",
+  "parentID": "mig_co576627l01k6601cemg",
+  "checksum": "1:43d4279b84fc2e8567f3f7479017550391faeb46a34df6f8408140b45599b159",
+  "operations": [
+    {
+      "addColumn": {
+        "column": {
+          "name": "history",
+          "type": "multiple"
+        },
+        "table": "conversations"
+      }
+    }
+  ]
+}

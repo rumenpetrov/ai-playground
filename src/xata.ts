@@ -70,7 +70,13 @@ const tables = [
     ],
     revLinks: [{ column: "session", table: "nextauth_users_sessions" }],
   },
-  { name: "conversations", columns: [{ name: "name", type: "string" }] },
+  {
+    name: "conversations",
+    columns: [
+      { name: "name", type: "string" },
+      { name: "history", type: "multiple" },
+    ],
+  },
 ] as const;
 
 export type SchemaTables = typeof tables;

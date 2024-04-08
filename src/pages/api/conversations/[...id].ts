@@ -11,5 +11,11 @@ export const GET: APIRoute = async ({ params, request }: APIContext): Promise<Re
     return new Response(null, status404);
   }
 
-  return new Response(JSON.stringify(record), status200);
+  const data = {
+    ...record,
+    history: record?.history?.map(item => JSON.parse(item)),
+  };
+
+  return new Response(JSON.stringify(data), status200);
 };
+
