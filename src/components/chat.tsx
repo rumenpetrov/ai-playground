@@ -83,20 +83,6 @@ export const Chat = (props: Props) => {
             </AlertDescription>
           </Alert>
 
-          {/* {data?.choices && data?.choices.map(choice => {
-            return (
-              <Alert key={choice?.index} className="my-2">
-                <AlertTitle className="font-bold">AI:</AlertTitle>
-
-                <AlertDescription>
-                  <pre>
-                    {choice?.message?.content}
-                  </pre>
-                </AlertDescription>
-              </Alert>
-            );
-          })} */}
-
           {Array.isArray(messages) && messages.length > 0 && messages.map((message, index) => {
             return (
               <Alert key={index} className="my-2" variant={message.role === 'assistant' && 'destructive'}>
