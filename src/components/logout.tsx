@@ -4,12 +4,13 @@ import { signOut } from 'auth-astro/client';
 
 interface Props {
   children: ReactNode;
+  className?: string,
 }
 
 export const Login = (props: Props) => {
-  const { children, ...rest } = props;
+  const { children, className, ...rest } = props;
 
-  return <button {...rest} onClick={() => signOut()}>{children}</button>;
+  return <button {...rest} className={className} onClick={() => signOut()}>{children}</button>;
 };
 
 export default Login;

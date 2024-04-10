@@ -14,8 +14,8 @@ import {
 
 interface Props {
   hasUser: boolean;
-  name?: string;
-  url?: string;
+  name?: string | null;
+  url?: string | null;
 };
 
 export const UserMenu = (props: Props) => {
@@ -30,8 +30,11 @@ export const UserMenu = (props: Props) => {
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Avatar className="cursor-pointer">
-            <AvatarImage src={url} />
-            <AvatarFallback>{avatarFallbackChildren}</AvatarFallback>
+            {typeof url === 'string' ? (
+              <AvatarImage src={url} />
+            ) : (
+              <AvatarFallback>{avatarFallbackChildren}</AvatarFallback>
+            )}
           </Avatar>
         </DropdownMenuTrigger>
 

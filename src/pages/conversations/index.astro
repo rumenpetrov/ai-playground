@@ -5,9 +5,10 @@ import Typography from '@/components/typography.tsx';
 import ConversationCard from '@/components/conversation-card.tsx';
 import NativeButton from '@/components/native-button.astro';
 import { GET } from '@/pages/api/conversations/index.ts';
+import type { Conversation } from '@/types.d.ts';
 
 const conversationsResponse = await GET(Astro);
-const conversations = conversationsResponse && conversationsResponse?.status === 200
+const conversations: Conversation[] = conversationsResponse && conversationsResponse?.ok
   ? await conversationsResponse.json()
   : [];
 ---

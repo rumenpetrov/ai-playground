@@ -21,10 +21,6 @@ export const POST: APIRoute = async ({ params, request }: APIContext): Promise<R
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        // 'Access-Control-Allow-Origin': '*',
-        // 'Access-Control-Allow-Credentials': false,
-        // 'Access-Control-Allow-Methods': 'POST, OPTIONS',
-        // 'Access-Control-Allow-Headers': 'Content-Type',
       },
       body: JSON.stringify({
         model: 'gpt-4',

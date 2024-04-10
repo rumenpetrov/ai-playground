@@ -6,14 +6,15 @@ import { signIn } from 'auth-astro/client';
 interface Props {
   provider: string;
   children: ReactNode;
-}
+  className?: string,
+};
 
 const providerMapping = {
   github: 'GitHub',
 };
 
 export const Login = (props: Props) => {
-  const { children, provider, ...rest } = props;
+  const { children, provider, className, ...rest } = props;
 
   if (provider !== 'github') {
     console.error('Provider not supported.', provider);
@@ -21,7 +22,7 @@ export const Login = (props: Props) => {
   }
 
   return (
-    <button {...rest} onClick={() => signIn(provider)}>
+    <button {...rest} className={className} onClick={() => signIn(provider)}>
       {children}
       <span>Login with {providerMapping?.[provider]}</span>
     </button>

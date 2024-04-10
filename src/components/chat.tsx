@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button.tsx';
 import { Textarea } from '@/components/ui/textarea.tsx';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert.tsx';
 import { formatMessage } from '@/utilities/chat.ts';
+import type { Message } from '@/types.d.ts';
 
 const styleRoot = {
   display: 'grid',
@@ -13,12 +14,12 @@ const styleScrollAreaRoot = {
   maxHeight: '60vh',
   overflow: 'hidden scroll',
   display: 'flex',
-  flexDirection: 'column-reverse',
-  overflowAnchor: 'auto !important',
+  'flex-direction': 'column-reverse',
+  'overflow-anchor': 'auto !important',
 };
 const styleScrollAreaContent = {};
 
-const chatWithAI = async (id: string, prompt: string, messages) => {
+const chatWithAI = async (id: string, prompt: string, messages: Message[]) => {
   const response = await fetch('/api/ai/chat', {
     method: 'POST',
     headers: {
@@ -42,7 +43,7 @@ type FetchStatus = 'idle' | 'loading';
 
 interface Props {
   id: string;
-  initialHistory: Object[];
+  initialHistory?: Message[];
 }
 
 export const Chat = (props: Props) => {
@@ -51,7 +52,7 @@ export const Chat = (props: Props) => {
   const processing = fetchStatus === 'loading';
   const [data, setData] = useState();
   const [prompt, setPrompt] = useState('');
-  const [messages, setMessages] = useState([...initialHistory]);
+  const [messages, setMessages] = useState<Message[]>([...initialHistory]);
 
   const handleSend = async () => {
     setFetchStatus('loading');
@@ -85,7 +86,7 @@ export const Chat = (props: Props) => {
 
           {Array.isArray(messages) && messages.length > 0 && messages.map((message, index) => {
             return (
-              <Alert key={index} className="my-2" variant={message.role === 'assistant' && 'destructive'}>
+              <Alert key={index} className="my-2" variant={message?.role === 'assistant' ? 'destructive' : undefined}>
                 {message.role === 'assistant' && (
                   <AlertTitle className="font-bold" >AI:</AlertTitle>
                 )}
