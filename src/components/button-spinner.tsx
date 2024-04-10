@@ -1,5 +1,3 @@
-import React from 'react';
-
 export const ButtonSpinner = () => {
   return (
     <div role="status">

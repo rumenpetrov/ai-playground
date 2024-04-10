@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import ButtonSpinner from '@/components/button-spinner.tsx';
 import { Button } from '@/components/ui/button.tsx';
 import { Textarea } from '@/components/ui/textarea.tsx';
@@ -6,18 +6,19 @@ import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert.tsx';
 import { formatMessage } from '@/utilities/chat.ts';
 import type { Message } from '@/types.d.ts';
 
+type Style = { [k: string]: string };
+
 const styleRoot = {
   display: 'grid',
   gridTemplateRows: '1fr auto',
-};
+} as Style;
 const styleScrollAreaRoot = {
   maxHeight: '60vh',
   overflow: 'hidden scroll',
   display: 'flex',
-  'flex-direction': 'column-reverse',
-  'overflow-anchor': 'auto !important',
-};
-const styleScrollAreaContent = {};
+  flexDirection: 'column-reverse',
+  overflowAnchor: 'auto !important',
+} as Style;
 
 const chatWithAI = async (id: string, prompt: string, messages: Message[]) => {
   const response = await fetch('/api/ai/chat', {
@@ -44,13 +45,12 @@ type FetchStatus = 'idle' | 'loading';
 interface Props {
   id: string;
   initialHistory?: Message[];
-}
+};
 
 export const Chat = (props: Props) => {
   const { id, initialHistory = [] } = props;
   const [fetchStatus, setFetchStatus] = useState<FetchStatus>('idle');
   const processing = fetchStatus === 'loading';
-  const [data, setData] = useState();
   const [prompt, setPrompt] = useState('');
   const [messages, setMessages] = useState<Message[]>([...initialHistory]);
 
@@ -65,7 +65,6 @@ export const Chat = (props: Props) => {
       setMessages(prevMessages => [...prevMessages, formatMessage('user', prompt)]);
     }
 
-    setData(nextData);
     setPrompt('');
     setFetchStatus('idle');
   };
@@ -73,7 +72,7 @@ export const Chat = (props: Props) => {
   return (
     <div style={styleRoot}>
       <div className="h-full w-full" style={styleScrollAreaRoot}>
-        <div style={styleScrollAreaContent}>
+        <div>
           <Alert key="greeting" className="my-2" variant="destructive">
             <AlertTitle className="font-bold">AI:</AlertTitle>
 

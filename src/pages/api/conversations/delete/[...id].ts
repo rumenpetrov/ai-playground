@@ -1,6 +1,6 @@
-import type { APIRoute, APIContext } from 'astro';
+import type { APIRoute } from 'astro';
 import xataClient from '@/data-entities/xata-client.ts'
-import { status200, status404, status422, status500 } from '@/utilities/rest-status-codes.ts'
+import { status404, status500 } from '@/utilities/rest-status-codes.ts'
 
 export const DELETE: APIRoute = async ({ params, redirect }): Promise<Response> => {
   const { id } = params;
@@ -10,7 +10,7 @@ export const DELETE: APIRoute = async ({ params, redirect }): Promise<Response> 
   }
 
   try {
-    const record = await xataClient.db.conversations.delete(id);
+    await xataClient.db.conversations.delete(id);
   } catch (error) {
     return new Response(null, status500);
   }

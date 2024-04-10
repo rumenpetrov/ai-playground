@@ -1,4 +1,3 @@
-import React from 'react';
 import { Icon } from '@iconify-icon/react';
 import Login from '@/components/login.tsx';
 import Logout from '@/components/logout.tsx';
@@ -14,8 +13,8 @@ import {
 
 interface Props {
   hasUser: boolean;
-  name?: string | null;
-  url?: string | null;
+  name?: string;
+  url?: string;
 };
 
 export const UserMenu = (props: Props) => {

@@ -1,8 +1,8 @@
 import type { APIRoute, APIContext } from 'astro';
 import xataClient from '@/data-entities/xata-client.ts'
-import { status200, status404, status422, status500 } from '@/utilities/rest-status-codes.ts';
+import { status200, status422, status500 } from '@/utilities/rest-status-codes.ts';
 
-export const POST: APIRoute = async ({ params, request }: APIContext): Promise<Response> => {
+export const POST: APIRoute = async ({ request }: APIContext): Promise<Response> => {
   if (request.headers.get('Content-Type') === 'application/json') {
     const body = await request.json();
     const { id, prompt, history = [] } = body;
@@ -40,7 +40,8 @@ export const POST: APIRoute = async ({ params, request }: APIContext): Promise<R
       const assistantResponse = await response.json();
       const assistantMessage = assistantResponse?.choices?.[0]?.message;
       const nextHistory = [...nextHistoryBeforeResponse, assistantMessage];
-      const record = await xataClient.db.conversations.update(id, { history: [...nextHistory.map(item => JSON.stringify(item))] });
+
+      await xataClient.db.conversations.update(id, { history: [...nextHistory.map(item => JSON.stringify(item))] });
 
       return new Response(JSON.stringify(assistantResponse), status200);
     }

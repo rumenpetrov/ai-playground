@@ -77,7 +77,7 @@ const formRowClass = 'flex flex-col py-2';
 </Layout>
 
 <!-- TODO: Display form errors -->
-<script define:vars={{ formErrors }}>
+<script is:inline define:vars={{ formErrors }}>
   if (formErrors && typeof formErrors === 'object') {
     alert(JSON.stringify(formErrors))
   }

@@ -1,8 +1,8 @@
 import type { APIRoute, APIContext } from 'astro';
 import xataClient from '@/data-entities/xata-client.ts'
-import { status200, status404, status422, status500 } from '@/utilities/rest-status-codes.ts'
+import { status200, status422 } from '@/utilities/rest-status-codes.ts'
 
-export const POST: APIRoute = async ({ params, request }: APIContext): Promise<Response> => {
+export const POST: APIRoute = async ({ request }: APIContext): Promise<Response> => {
   const formData = await request.formData();
   const name = formData.get('name');
   const nameValid = typeof name === 'string' && name.length > 3;

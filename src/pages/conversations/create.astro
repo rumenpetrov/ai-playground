@@ -8,8 +8,6 @@ import NativeInput from '@/components/native-input.astro';
 import { POST } from '@/pages/api/conversations/create.ts';
 import { processForm } from '@/utilities/form.ts';
 
-const { id } = Astro.params;
-
 const { data, formErrors } = await processForm(Astro, POST);
 
 if (data) {
@@ -53,7 +51,7 @@ const formRowClass = 'flex flex-col py-2';
 </Layout>
 
 <!-- TODO: Display form errors -->
-<script define:vars={{ formErrors }}>
+<script is:inline define:vars={{ formErrors }}>
   if (formErrors && typeof formErrors === 'object') {
     alert(JSON.stringify(formErrors))
   }

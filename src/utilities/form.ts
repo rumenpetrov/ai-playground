@@ -1,11 +1,11 @@
-export const processForm = async (Astro, action) => {
+export const processForm = async (Astro: any, action: Function) => {
   let success = false;
   let error = false;
   let response = null;
   let data = null;
   let formErrors = null;
 
-  if (Astro.request.method === "POST") {
+  if (Astro?.request?.method === "POST") {
     try {
       response = await action(Astro);
 

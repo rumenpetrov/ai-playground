@@ -1,6 +1,14 @@
-import React from 'react';
 import type { ReactNode } from 'react';
 import { cn } from '@/lib/utils.ts';
+
+type Component =
+  | 'h1'
+  | 'h2'
+  | 'h3'
+  | 'h4'
+  | 'h5'
+  | 'h6'
+  | 'p'
 
 const componentMapping = {
   h1: 'scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl mb-4',
@@ -10,18 +18,19 @@ const componentMapping = {
   h5: 'scroll-m-20 text-xl font-semibold tracking-tight',
   h6: 'scroll-m-20 text-xl font-semibold tracking-tight',
   p: 'leading-7 [&:not(:first-child)]:mt-6',
-};
+} as const;
 
 interface Props {
   children: ReactNode;
-  Component: string;
+  Component: Component;
   className?: string;
 }
 
 export const Typography = (props: Props) => {
   const { children, Component, className, ...rest } = props;
+  const selectedComponentClassName = componentMapping?.[Component];
 
-  return <Component {...rest} className={cn(componentMapping?.[Component], className)}>{children}</Component>;
+  return <Component {...rest} className={cn(selectedComponentClassName, className)}>{children}</Component>;
 };
 
 export default Typography;

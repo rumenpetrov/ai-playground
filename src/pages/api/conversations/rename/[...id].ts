@@ -1,6 +1,6 @@
 import type { APIRoute, APIContext } from 'astro';
 import xataClient from '@/data-entities/xata-client.ts'
-import { status200, status404, status422, status500 } from '@/utilities/rest-status-codes.ts'
+import { status200, status422 } from '@/utilities/rest-status-codes.ts'
 
 export const PATCH: APIRoute = async ({ params, request }: APIContext): Promise<Response> => {
   const { id } = params;

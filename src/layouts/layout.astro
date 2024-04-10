@@ -11,6 +11,8 @@ interface Props {
 }
 
 const { title } = Astro.props;
+const meName = me?.user?.name as string | undefined;
+const meURL = me?.user?.image as string | undefined;
 ---
 
 <!doctype html>
@@ -33,7 +35,7 @@ const { title } = Astro.props;
             <MainMenu client:only="react" hasUser={Boolean(me)} />
           </div>
 
-          <UserMenu client:load hasUser={Boolean(me)} name={me?.user?.name} url={me?.user?.image} />
+          <UserMenu client:load hasUser={Boolean(me)} name={meName} url={meURL} />
         </div>
       </div>
     </header>
