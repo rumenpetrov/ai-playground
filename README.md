@@ -1,7 +1,6 @@
-# [WIP] AI playground
-> This project is currently a work in progress. It's actively being developed, and features may change frequently.
+# AI playground
 
-Learning application for trying out AI-related features and building simple REST API.
+This is a Learning application for building simple REST API and trying out AI-related features.
 
 ### Software requirements
 * docker and compose 24+
